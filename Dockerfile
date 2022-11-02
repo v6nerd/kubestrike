@@ -1,4 +1,4 @@
-FROM python:3.12-rc-slim-buster as builder
+FROM python:3.12-rc-slim as builder
 RUN apt-get update -y \
 && apt-get clean -y
 WORKDIR /kubestrike
@@ -7,7 +7,7 @@ RUN pip install --upgrade pip \
 && pip install kubestrike
 
 
-FROM python:3.12-rc-slim-buster
+FROM python:3.12-rc-slim
 LABEL maintainer="vasant kumar chinnipilli"
 COPY --from=builder /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
 COPY --from=builder /kubestrike /kubestrike
